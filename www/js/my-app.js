@@ -30,14 +30,25 @@ $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
     email = "usuario1@granola.com";
-    password = "1234s3334";
-
+    password = "1234s3334" + "ter32fgfwf";
+/*
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
     });
+    */
+
+   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    alert(errorMessage);
+    // ...
+  });
+
 });
 
 // Option 1. Using one 'page:init' handler for all pages
