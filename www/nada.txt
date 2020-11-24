@@ -1,1 +1,3 @@
- 
+ my-app.js:122 Uncaught TypeError: firebase.firestone is not a function
+    at HTMLAnchorElement.fnReg (my-app.js:122)
+    at HTMLAnchorElement.l (0:1144)
