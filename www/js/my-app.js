@@ -24,8 +24,8 @@ var app = new Framework7({
         url: 'index.html',
       },
       {
-        path: '/about/',
-        url: 'about.html',
+        path: '/comercios/',
+        url: 'comercios.html',
       },
       {
         path: '/login/',
@@ -39,9 +39,21 @@ var app = new Framework7({
         path: '/registro/',
         url: 'registro.html',
       },
+      {
+        path: '/contenido/',
+        url: 'contenido.html'
+          
+      },
     ]
     // ... other parameters
+  
+
+// Dom Events
+
   });
+
+
+
 
 var mainView = app.views.create('.view-main');
 var email;
@@ -60,7 +72,7 @@ $$(document).on('page:init', function (e) {
 })
 
 // Option 2. Using live 'page:init' event handlers for each page
-
+/*
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
   console.log(e);
@@ -69,10 +81,39 @@ $$(document).on('page:init', '.page[data-name="index"]', function (e) {
 
 $$(document).on('page:init', '.page[data-name="about"]', function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
-    console.log(e);
-    alert('Hello');
-})
+    // Dom Events
+$$('.panel-left').on('panel:open', function () {
+  console.log('Panel left: open');
+});
+$$('.panel-left').on('panel:opened', function () {
+  console.log('Panel left: opened');
+});
 
+// Instance Events
+var panelRight = app.panel.get('.panel-right-1');
+panelRight.on('open', function () {
+  console.log('Panel right: open');
+});
+panelRight.on('opened', function () {
+  console.log('Panel right: opened');
+});
+
+// App Events
+app.on('panelClose', function (panel) {
+  console.log('Panel ' + panel.side + ': close');
+});
+app.on('panelClosed', function (panel) {
+  console.log('Panel ' + panel.side + ': closed');
+});
+app.on('panelResize', function (panel, newPanelWidth) {
+  console.log('Panel resized to ' + newPanelWidth + 'px');
+});
+
+  
+    console.log(e);
+    
+})
+ */ 
 $$(document).on('page:init', '.page[data-name="login"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
   console.log(e);
@@ -89,6 +130,20 @@ $$(document).on('page:init', '.page[data-name="panel"]', function (e) {
   console.log(e);
 })
 
+$$(document).on('page:init', '.page[data-name="comercios"]', function (e) {
+  // Do something here when page with data-name="about" attribute loaded and initialized
+  console.log(e);
+  
+  
+})
+
+$$(document).on('page:init', '.page[data-name="contenido"]', function (e) {
+  // Do something here when page with data-name="about" attribute loaded and initialized
+  console.log(e);
+  bajarImagenes();
+})
+
+
 //Mis Funciones
 
 function fnLogin () {
@@ -100,7 +155,7 @@ function fnLogin () {
 
  firebase.auth().signInWithEmailAndPassword(email, password)
  .then( function(){
-    mainView.router.navigate("/panel/");
+    mainView.router.navigate("/contenido/");
 
  })
  
@@ -133,6 +188,7 @@ var colPersonas = db.collection('Personas');
       nombre: nombre,
       apeliido: apellido,
       foto: `mas adelante`,
+      direccion: direccion
   }
 
    colPersonas.doc(claveDeColeccion).set(datos);
@@ -150,4 +206,32 @@ var colPersonas = db.collection('Personas');
     var errorMessage = error.message;
     // ...
   });
+}
+
+//Funcion para cargar imagenes al contenido de la tienda
+var database = firebase.database();
+storageRef = firebase.storage().ref();
+
+ var verduleria = firebase.database().ref().child("Comercio/Verduleria1");
+
+
+function bajarImagenes(){
+  var imagen = "";
+  var precio = "";
+  
+  verduleria.on("value",function(snapshot){
+    var datos = snapshot.val();
+
+    for(var key in datos){
+      imagen += '<div id="producto1" class="swiper-slide" ><img style= width="150px" height="150px" src="' + datos[key].url + '"/>"<div><h3> precio:  $ ' + datos[key].precio + ' <h3></div> </div> ';
+      
+    }
+    $$("#comercio1").click(function(){
+      $$("#mercaderia").append(imagen);
+}); 
+    
+    console.log(datos);
+    console.log(precio);
+  })
+
 }
