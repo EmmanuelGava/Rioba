@@ -218,20 +218,38 @@ storageRef = firebase.storage().ref();
 function bajarImagenes(){
   var imagen = "";
   var precio = "";
-  
+  var i = 0;
   verduleria.on("value",function(snapshot){
     var datos = snapshot.val();
-
-    for(var key in datos){
-      imagen += '<div id="producto1" class="swiper-slide" ><img style= width="150px" height="150px" src="' + datos[key].url + '"/>"<div><h3> precio:  $ ' + datos[key].precio + ' <h3></div> </div> ';
-      
-    }
     $$("#comercio1").click(function(){
-      $$("#mercaderia").append(imagen);
+      
+    for(var key in datos){
+      i++;
+      imagen += '<div id="producto"' + i + '"class="swiper-slide" ><img style= width="150px" height="150px" src="' + datos[key].url + '"/>"<div><h3> precio:  $ ' + datos[key].precio + ' <h3></div> </div> ';
+      console.log(i);
+          if(i <= 3){
+            $$("#mercaderia").append(imagen);
+          }else if(i>3 && i<=6){
+            $$("#swiper1").append('<div id="swiper2" data-pagination='+ {"el": ".swiper-pagination"} + ' data-space-between="20" data-slides-per-view="2" class="swiper-container swiper-init demo-swiper"><div class="swiper-pagination"></div><div id="mercaderia1" class="swiper-wrapper"></div></div>');
+            $$("#mercaderia1").append(imagen);
+          }else{
+            $$("#swiper2").append('<div id="swiper3" data-pagination='+ {"el": ".swiper-pagination"} + ' data-space-between="20" data-slides-per-view="2" class="swiper-container swiper-init demo-swiper"><div class="swiper-pagination"></div><div id="mercaderia1" class="swiper-wrapper"></div></div>');
+            $$("#mercaderia2").append(imagen);
+          }
+
+
+
+
+
+
+    }
+    
+
 }); 
+  
     
     console.log(datos);
-    console.log(precio);
+    console.log(i);
   })
 
 }
