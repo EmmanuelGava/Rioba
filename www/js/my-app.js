@@ -50,38 +50,28 @@ var app = new Framework7({
 
 // Dom Events
 
+
+  });
+ app.sheet.create({
+    el: '.my-sheet-swipe-to-step',
+    swipeToClose: true,
+    swipeToStep: true,
+    backdrop: true,
   });
 
-
-
-
-var mainView = app.views.create('.view-main');
-var email;
-// Handle Cordova Device Ready Event
-$$(document).on('deviceready', function() {
-    console.log("Device is ready!");
-   
-   
-
+// create searchbar
+var searchbar = app.searchbar.create({
+  el: '.searchbar',
+  searchContainer: '.swiper-pagination',
+  searchIn: '.item-title',
+  on: {
+    search(sb, query, previousQuery) {
+      console.log(query, previousQuery);
+    }
+  }
 });
 
-// Option 1. Using one 'page:init' handler for all pages
-$$(document).on('page:init', function (e) {
-    // Do something here when page loaded and initialized
-    console.log(e);
-})
-
-// Option 2. Using live 'page:init' event handlers for each page
-/*
-$$(document).on('page:init', '.page[data-name="index"]', function (e) {
-  // Do something here when page with data-name="about" attribute loaded and initialized
-  console.log(e);
-  $$('#btnLog').on('click',fnLogin);
-})
-
-$$(document).on('page:init', '.page[data-name="about"]', function (e) {
-    // Do something here when page with data-name="about" attribute loaded and initialized
-    // Dom Events
+// Dom Events
 $$('.panel-left').on('panel:open', function () {
   console.log('Panel left: open');
 });
@@ -89,16 +79,24 @@ $$('.panel-left').on('panel:opened', function () {
   console.log('Panel left: opened');
 });
 
-// Instance Events
-var panelRight = app.panel.get('.panel-right-1');
-panelRight.on('open', function () {
-  console.log('Panel right: open');
-});
-panelRight.on('opened', function () {
-  console.log('Panel right: opened');
-});
+
 
 // App Events
+$$(document).on('page:init', function (e) {
+  // Do something here when page loaded and initialized
+  var stepper = app.stepper.create({
+    el: '.stepper',
+    on: {
+      change: function () {
+        console.log('Stepper value changed')
+      }
+    }
+  })
+
+ 
+
+
+
 app.on('panelClose', function (panel) {
   console.log('Panel ' + panel.side + ': close');
 });
@@ -109,11 +107,38 @@ app.on('panelResize', function (panel, newPanelWidth) {
   console.log('Panel resized to ' + newPanelWidth + 'px');
 });
 
-  
-    console.log(e);
+var mainView = app.views.create('.view-main');
+var email;
+// Handle Cordova Device Ready Event
+$$(document).on('deviceready', function() {
+    console.log("Device is ready!");
+    $$('#btnPanelCom').on('click',function(){mainView.router.navigate("/comercios/")});
+    $$('#btnPanelCat').on('click',function(){mainView.router.navigate("/comercios/")});
+    $$('#btnPanelLog').on('click',function(){mainView.router.navigate("/login/")});
+    $$('#btnPanelReg').on('click',function(){mainView.router.navigate("/registro/")});
+    $$('#btnPanelCuenta').on('click',function(){mainView.router.navigate("/panel/")});
+    $$('#btnPanelCerrarSesion').on('click',function(){mainView.router.navigate("/cerrarSesion/")});
     
+    
+
+});
+
+
+// Option 1. Using one 'page:init' handler for all pages
+
+    
+    bajarImagenes();
+    console.log(e);
 })
- */ 
+
+
+$$(document).on('page:init', '.page[data-name="index"]', function (e) {
+  // Do something here when page with data-name="about" attribute loaded and initialized
+  console.log(e);
+  
+})
+
+
 $$(document).on('page:init', '.page[data-name="login"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
   console.log(e);
@@ -140,11 +165,13 @@ $$(document).on('page:init', '.page[data-name="comercios"]', function (e) {
 $$(document).on('page:init', '.page[data-name="contenido"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
   console.log(e);
-  bajarImagenes();
+  
 })
 
 
 //Mis Funciones
+
+
 
 function fnLogin () {
   email = $$('#LogEmail').val();
@@ -212,44 +239,67 @@ var colPersonas = db.collection('Personas');
 var database = firebase.database();
 storageRef = firebase.storage().ref();
 
- var verduleria = firebase.database().ref().child("Comercio/Verduleria1");
-
+ var fruta = firebase.database().ref().child("Comercio/Verduleria1/Fruta").limitToLast(3);
+ var verdura = firebase.database().ref().child("Comercio/Verduleria1/Verdura").limitToLast(3);
+ var legumbres = firebase.database().ref().child("Comercio/Verduleria1/Legumbres").limitToLast(3);
 
 function bajarImagenes(){
   var imagen = "";
+  var imagen2 = "";
+  var imagen3 = "";
   var precio = "";
+ 
   var i = 0;
-  verduleria.on("value",function(snapshot){
+  fruta.on("value",function(snapshot){
     var datos = snapshot.val();
-    $$("#comercio1").click(function(){
-      
+    
+    
     for(var key in datos){
-      i++;
-      imagen += '<div id="producto"' + i + '"class="swiper-slide" ><img style= width="150px" height="150px" src="' + datos[key].url + '"/>"<div><h3> precio:  $ ' + datos[key].precio + ' <h3></div> </div> ';
-      console.log(i);
-          if(i <= 3){
-            $$("#mercaderia").append(imagen);
-          }else if(i>3 && i<=6){
-            $$("#swiper1").append('<div id="swiper2" data-pagination='+ {"el": ".swiper-pagination"} + ' data-space-between="20" data-slides-per-view="2" class="swiper-container swiper-init demo-swiper"><div class="swiper-pagination"></div><div id="mercaderia1" class="swiper-wrapper"></div></div>');
-            $$("#mercaderia1").append(imagen);
-          }else{
-            $$("#swiper2").append('<div id="swiper3" data-pagination='+ {"el": ".swiper-pagination"} + ' data-space-between="20" data-slides-per-view="2" class="swiper-container swiper-init demo-swiper"><div class="swiper-pagination"></div><div id="mercaderia1" class="swiper-wrapper"></div></div>');
-            $$("#mercaderia2").append(imagen);
-          }
-
-
-
-
-
-
+      i++;  
+      
+        
+      imagen += '<div id="Sector1elemento' + i + '""class="col-50 medium-25" ><div><h3> ' + datos[key].nombre + ' <h3></div><img style= width="100px" height="100px" src="' + datos[key].url + '"/>"<div><h4> precio:  $ ' + datos[key].precio + ' <h4></div><div class="block block-strong text-align-center"><div class="row"><div class="stepper stepper-fill stepper-init" data-wraps="true" data-autorepeat="true" data-autorepeat-dynamic="true" data-decimal-point="2" data-manual-input-mode="true"><div class="stepper-button-minus"></div><div class="stepper-input-wrap"><input type="text" value="0" min="0" max="1000" step="1"></div><div class="stepper-button-plus"></div><button id ="addCart" class="buttonAdd"><span  class="material-icons">add_shopping_cart</span></button></div></div></div></div> ';
+        console.log(i);
     }
+    //document.getElementById("content1").innerHTML = imagen;
+    $$('#content1').html(imagen)
     
-
-}); 
-  
     
-    console.log(datos);
-    console.log(i);
+  })
+  verdura.on("value",function(snapshot){
+    var datos = snapshot.val();
+    
+    
+    for(var key in datos){
+      i++;  
+      
+        
+      imagen2 += '<div id="Sector2elemento' + i + '""class="col-50 medium-25" ><div><h3> ' + datos[key].nombre + ' <h3></div><img style= width="100px" height="100px" src="' + datos[key].url + '"/>"<div><h4> precio:  $ ' + datos[key].precio + ' <h4></div><div class="block block-strong text-align-center"><div class="row"><div class="stepper stepper-fill stepper-init" data-wraps="true" data-autorepeat="true" data-autorepeat-dynamic="true" data-decimal-point="2" data-manual-input-mode="true"><div class="stepper-button-minus"></div><div class="stepper-input-wrap"><input type="text" value="0" min="0" max="1000" step="1"></div><div class="stepper-button-plus"></div><button id ="addCart" class="buttonAdd"><span  class="material-icons">add_shopping_cart</span></button></div></div></div></div> ';
+        console.log(i);
+    }
+    //document.getElementById("content2").innerHTML = imagen2;
+    $$('#content2').html(imagen2)
+    
+    
+  })
+  legumbres.on("value",function(snapshot){
+    var datos = snapshot.val();
+    
+    
+    for(var key in datos){
+      i++;  
+      
+        
+      imagen3 += '<div id="Sector3elemento' + i + '""class="col-50 medium-25" ><div><h3> ' + datos[key].nombre + ' <h3></div><img style= width="100px" height="100px" src="' + datos[key].url + '"/>"<div><h4> precio:  $ ' + datos[key].precio + ' <h4></div><div class="block block-strong text-align-center"><div class="row"><div class="stepper stepper-fill stepper-init" data-wraps="true" data-autorepeat="true" data-autorepeat-dynamic="true" data-decimal-point="2" data-manual-input-mode="true"><div class="stepper-button-minus"></div><div class="stepper-input-wrap"><input type="text" value="0" min="0" max="1000" step="1"></div><div class="stepper-button-plus"></div><button id ="addCart" class="buttonAdd"><span  class="material-icons">add_shopping_cart</span></button></div></div></div></div> ';;
+        console.log(i);
+    }
+    //document.getElementById("content2").innerHTML = imagen2;
+    $$('#content3').html(imagen3)
+    
+    
   })
 
 }
+
+
+

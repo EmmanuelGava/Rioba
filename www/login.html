@@ -1,27 +1,35 @@
 <!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
 <div class="page" data-name="login">
     <div class="navbar">
-        <div class="navbar-inner sliding">
-        <div class="left">
-            <a href="#" class="link back">
-            <i class="icon icon-back"></i>
-            <span class="ios-only">Back</span>
-            </a>
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner">
+          <div class="left"></div>
+          <p><a class="button panel-open" href="#" data-panel=".panel-left"><i class="f7-icons color-yellow size-25">house</i></a></p>
+          <div class="title">Rioba</div>
+          <div class="title">LOGIN</div>
+          <div class="right"></div>
+          <form class="searchbar">
+            <div class="searchbar-inner">
+              <div class="searchbar-input-wrap">
+                <input type="search" placeholder="Buscar">
+                    <i class="searchbar-icon"></i>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="title">LOGIN</div>
-        </div>
-    </div>
+    </div>   
     <div class="page-content">
         <div class="block-title">login</div>
         <div class="block block-strong">
-            <form class="list" id="my-form">
+            <form class="list">
                 <ul>
                     <li>
                         <div class="item-content item-input">
                         <div class="item-inner">
                             <div class="item-title item-label">E-mail</div>
                             <div class="item-input-wrap">
-                            <input type="email" id="LogEmail" name="LogEmail" placeholder="E-mail">
+                            <input type="email" id="LogEmail" name="logEmail" placeholder="E-mail">
                             </div>
                         </div>
                         </div>
@@ -31,7 +39,7 @@
                     <div class="item-inner">
                         <div class="item-title item-label">Password</div>
                         <div class="item-input-wrap">
-                        <input type="password" id="LogPass" name="LogPass" placeholder="Password">
+                        <input type="password" id="LogPass" name="logPass" placeholder="Password">
                         </div>
                     </div>
                     </div>

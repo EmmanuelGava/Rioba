@@ -19,7 +19,7 @@
     <!-- Color theme for statusbar -->
     <meta name="theme-color" content="#2196f3">
     <!-- Your app title -->
-    <title>My App</title>
+    <title>Rioba</title>
     <!-- Path to Framework7 Library CSS -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.bundle.min.css">
     <!-- Path to icons -->
@@ -30,49 +30,76 @@
 
 <body>
     <div id="app">
-        <!-- Statusbar overlay -->
-        <div class="statusbar"></div>
-    
-        <!-- Your main view, should have "view-main" class -->
-        <div class="view view-main">
-            <!-- Initial Page, "data-name" contains page name -->
-            <div data-name="index" class="page">
-    
-                <!-- Top Navbar -->
-                <div class="navbar">
-                    <div class="navbar-bg"></div>
-                    <div class="navbar-inner">
-                        <div class="left"><i class="icon icon-back"></i></div>
-                        <div class="title">Rioba</div>
-                        <div class="right"><i class="icon icon-forward"></i></div>
-                        
-                    </div>
-                </div>
-        
-                <!-- Toolbar -->
-                <div class="toolbar toolbar-bottom">
-                    <div class="toolbar-inner">
-                    <!-- Toolbar links -->
-                    <a href="#" class="link">Link 1</a>
-                    <a href="#" class="link">Link 2</a>
-                    </div>
-                </div>
-        
-                <!-- Scrollable page content -->
-                <div class="page-content">
-                    <div class="block">
-                        <h2>Ingresa a registro</h2>
-                        <!-- Link to another page -->
-                        <a href="/comercios/" data-view=".page-content">Comercios</a>
-                        <a href="/login/" data-view=".page-content">login</a>
-                        <a href="/registro/" data-view=".page-content">registro</a>
-                        
-
-                    </div>
-                </div>
-            </div>
+      <!--Panel lateral-->
+        <div class="panel panel-left panel-reveal panel-resizable panel-init">
+          <div class="block">
+            <p><a id="btnPanelCom">Comercios</a></p>
+            <p><a id="btnPanelCat">Categorias</a></p>
+            <p><a id="btnPanelLog">Login</a></p>
+            <p><a id="btnPanelReg">Registrarse</a></p>
+            <p><a id="btnPanelCuenta">Cuenta</a></p>
+            <p><a id="btnPanelCerrarSesion">Cerrar Sesion</a></p>
+          </div>
         </div>
-    </div>
+        <!--Cabecera-->
+        <div class="view view-main view-init">
+          <div class="page">
+            <div class="navbar">
+              <div class="navbar-bg"></div>
+              <div class="navbar-inner">
+                <div class="left"></div>
+                <p><a class="button panel-open" href="#" data-panel=".panel-left"><i class="f7-icons color-yellow size-25">house</i></a></p>
+                <div class="title">Rioba</div>
+                <div class="right"></div>
+                <form class="searchbar">
+                  <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                      <input type="search" placeholder="Buscar">
+                      <i class="searchbar-icon"></i>
+                      <span class="input-clear-button"></span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!--Cantenido Comercios-->
+            <div class="page-content">
+              <div class="block block-strong ">
+                    <div class="title" id="titleIndex"><h1>Comercios</h1></div>
+                    <div class="title"><h2>Verdulerias</h2></div>
+                    <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="20" data-slides-per-view="2" class="swiper-container swiper-init demo-swiper">
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide item-title" id="comercio1"><a href="/contenido/" data-view=".page-content"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2F0112_t_green-food-logo_6.png?alt=media&token=2f25ba83-7df5-4694-8c3a-46b4031e4a37"></a></div>
+                          <div class="swiper-slide item-title" id="comercio2"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Fverduleria2.jpg?alt=media&token=1f006279-c01f-4af6-a2a6-1dd9e3595899"></div>
+                          <div class="swiper-slide " id="comercio7"><img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Fverduleria3.png?alt=media&token=dbe27587-3dba-4f2c-b079-6f949aaf20e5"></div>
+                        </div>
+                      </div>
+                      <div class="title"><h2>Carnicerias</h2></div>
+                      <div  data-pagination='{"el": ".swiper-pagination"}' data-space-between="20" data-slides-per-view="2" class="swiper-container swiper-init demo-swiper">
+                          <div class="swiper-pagination"></div>
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide" id="comercio4"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Fcarniceria1.png?alt=media&token=ff10b53f-a7e7-4552-be6a-22007183d382"></div>
+                            <div class="swiper-slide" id="comercio5"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Fcarniceria2.jpg?alt=media&token=05023dac-07c5-4883-9480-6e00dcc4b6dd"></div>
+                            <div class="swiper-slide" id="comercio6"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Fcarniceria3.jpg?alt=media&token=6867c525-9317-430b-9a89-67b0b1ac9179"></div>
+                          </div>
+                        </div>
+                        <div class="title"><h2>Farmacias</h2></div>
+                        <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="20" data-slides-per-view="2" class="swiper-container swiper-init demo-swiper">
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" id="comercio7"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Ffarmacia1.png?alt=media&token=de4cb718-a2cc-47af-b6db-d53b5941759b"></div>
+                                <div class="swiper-slide" id="comercio8"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Ffarmacia2.png?alt=media&token=bad757b8-990f-40a1-827c-4c25f5694e9b"></div>
+                                <div class="swiper-slide" id="comercio9"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Ffarmacia3.jpg?alt=media&token=56e8e161-06b3-452c-9d7a-cc33597d68c1"></div>
+                              </div>
+                          </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
 
