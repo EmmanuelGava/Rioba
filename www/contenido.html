@@ -1,5 +1,5 @@
 <!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
-<div class="page" data-name="about">
+<div class="page" data-name="contenido">
     <div class="navbar">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -22,7 +22,7 @@
     <div class="toolbar toolbar-bottom ">
       <div class="toolbar-inner">
       <!-- Toolbar links -->
-        <a href="#" class="link"><span class="material-icons">menu</span></a>
+        <a id="menu" href="#" class="link"><span class="material-icons">menu</span></a>
         <div class="sheet-modal-swipe-step">
           <a href="#" class="button sheet-open data" data-sheet=".my-sheet-swipe-to-step"><span class="material-icons">shopping_cart</span></a>
         </div>
@@ -49,28 +49,21 @@
           
           <div class="display-flex padding justify-content-space-between align-items-center">
             <div style="font-size: 18px"><b>Total:</b></div>
-            <div style="font-size: 22px"><b>$500</b></div>
+            <div id="totalItems" style="font-size: 22px"><b></b></div>
           </div>
           <div class="padding-horizontal padding-bottom">
-            <a class="button button-large button-fill">Make Payment</a>
-            <div class="margin-top text-align-center">Swipe up for more details</div>
+            <a class="button button-large button-fill">Pagar</a>
+            <div class="margin-top text-align-center">Dezlizar para mas detalles</div>
           </div>
         </div>
-        <div class="block-title block-title-medium margin-top">Your order:</div>
-        <div class="list no-hairlines">
-          <ul>
-            <li class="item-content">
-              <div class="item-inner">
-                <div class="item-title">Item 1</div>
-                <div class="item-after text-color-black"><b>$200</b></div>
-              </div>
-            </li>
-            <li class="item-content">
-              <div class="item-inner">
-                <div class="item-title">Item 2</div>
-                <div class="item-after text-color-black"><b>$180</b></div>
-              </div>
-            </li>
+        <div class="row">
+        <div class="block-title  margin-top">Su Orden</div>
+        <div class="block-title  margin-top">Cantidad</div>
+        <div class="block-title  margin-top">Precio x U.</div>
+        <div class="block-title  margin-top">Subtotal</div>
+        </div>
+        <div  class="list no-hairlines">
+          <ul id="cajaItems">
             <li class="item-content">
               <div class="item-inner">
                 <div class="item-title">Delivery</div>

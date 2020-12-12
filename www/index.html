@@ -30,9 +30,13 @@
 
 <body>
     <div id="app">
+      <div class="view view-main">
+        <!-- Initial Page, "data-name" contains page name -->
+        <div data-name="index" class="page"></div>
       <!--Panel lateral-->
         <div class="panel panel-left panel-reveal panel-resizable panel-init">
           <div class="block">
+            <p><a id="btnPanelHome">Home</a></p>
             <p><a id="btnPanelCom">Comercios</a></p>
             <p><a id="btnPanelCat">Categorias</a></p>
             <p><a id="btnPanelLog">Login</a></p>
@@ -71,7 +75,7 @@
                     <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="20" data-slides-per-view="2" class="swiper-container swiper-init demo-swiper">
                         <div class="swiper-pagination"></div>
                         <div class="swiper-wrapper">
-                          <div class="swiper-slide item-title" id="comercio1"><a href="/contenido/" data-view=".page-content"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2F0112_t_green-food-logo_6.png?alt=media&token=2f25ba83-7df5-4694-8c3a-46b4031e4a37"></a></div>
+                          <div class="swiper-slide item-title" ><a id="indexComer1" data-view=".page-content"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2F0112_t_green-food-logo_6.png?alt=media&token=2f25ba83-7df5-4694-8c3a-46b4031e4a37"></a></div>
                           <div class="swiper-slide item-title" id="comercio2"> <img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Fverduleria2.jpg?alt=media&token=1f006279-c01f-4af6-a2a6-1dd9e3595899"></div>
                           <div class="swiper-slide " id="comercio7"><img src="https://firebasestorage.googleapis.com/v0/b/rioba-14012.appspot.com/o/img%2Fverduleria3.png?alt=media&token=dbe27587-3dba-4f2c-b079-6f949aaf20e5"></div>
                         </div>
