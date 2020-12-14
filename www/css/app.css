@@ -1,5 +1,16 @@
 /* Your app custom styles here */
 /* Custom color theme */
+#btnMpago{
+  background-color: rgb(79, 164, 233) !important;
+}
+.imgslider{
+  width: 150px !important;
+  height: 150px !important;
+}
+.cat{
+  color: #000 !important;
+  font-size: 12px !important;
+}
 .buttonAdd{
   background-color: #654add !important;
   color:white !important;
@@ -11,12 +22,18 @@
   float: right;
   width: 40% !important;
 }
-a {
+.leftMenu{
   color: #FFFFFF !important;
 }
 #titleIndex{
   text-align: center !important;
   font-size: 2em !important;
+}
+#btnPOLogin{
+  color: #000 !important;
+}
+#btnPOReg{
+  color: #000 !important;
 }
 :root {
   --f7-theme-color: #2cd048;
@@ -24,6 +41,11 @@ a {
   --f7-theme-color-shade: #25ae3c;
   --f7-theme-color-tint: #4cd964;
   --f7-link-highlight-white: rgba(255, 255, 255, 0.15);
+  --f7-popover-border-radius: 4px;
+  --f7-popover-box-shadow: var(--f7-elevation-8);
+  --f7-popover-actions-icon-size: 24px;
+  --f7-popover-bg-color: #ffffff;
+  --f7-popover-actions-label-text-color: rgb(0, 0, 0);
 }
 /* Invert navigation bars to fill style */
 :root,
